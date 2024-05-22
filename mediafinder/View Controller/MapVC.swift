@@ -6,7 +6,8 @@
 //
 
 import MapKit
-protocol sendLocation: AnyObject {
+
+protocol SendLocation: AnyObject {
     func didSelectedLocation(_ data: String)
 }
 
@@ -18,7 +19,7 @@ class MapVC: UIViewController {
     
     //MARK: - Properties.
     private let locationManager = CLLocationManager() // Must use locationManager
-    var delegat: sendLocation?
+    var delegat: SendLocation?
     
     //MARK: - LifeCycle Methods.
     override func viewDidLoad() {

@@ -9,6 +9,8 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var showEmailLabel: UILabel!
     @IBOutlet weak var showPhoneLabel: UILabel!
     @IBOutlet weak var showAddressLabel: UILabel!
+    @IBOutlet weak var showUserImage: UIImageView!
+    @IBOutlet weak var showGenderLable: UILabel!
     
     //MARK: - Lifecycle Methods.
     override func viewDidLoad() {
@@ -17,7 +19,10 @@ class ProfileVC: UIViewController {
         getDataFromUserdefaults() // calling this func to in viewDidload load to shows user data
         UserDefaults.standard.setValue(true, forKey: "UDKIslogedIn") // set bool value and  string key to check the user make login befor or not then calling this code in didFinishLaunchingWithOptions func in AppDelegate
     }
-    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        showUserImage.layer.cornerRadius = showUserImage.frame.height / 2 // this code to change the image shape to be circylar insted of square
+    }
     
     //MARK: - Actions
     @objc func logoutTapped() { // action to move to SigninVc when tapped on logout button
@@ -41,22 +46,37 @@ class ProfileVC: UIViewController {
 extension ProfileVC {
     // This func to get and showing the data in profile
     private func getDataFromUserdefaults() { // this func to get and showing the data in profile
-        if let saveData = UserDefaults.standard.data(forKey: "userData") {
-            do {
-                let decoder = JSONDecoder()
-                let decodedUserData = try decoder.decode(User.self,from: saveData)
-                let name = decodedUserData.name
-                let email = decodedUserData.email
-                let phone = decodedUserData.phone
-                let address = decodedUserData.address
-                showNameLabel.text = name
-                showEmailLabel.text = email
-                showPhoneLabel.text = phone
-                showAddressLabel.text = address
-            } catch {
-                print("Error decoding user data: /(error.localizedDescription)")
-            }
+        if let saveData = UserDefaultManager.shared.loadUserData() {
+            showNameLabel.text = saveData.name
+            showEmailLabel.text = saveData.email
+            showPhoneLabel.text = saveData.phone
+            showAddressLabel.text = saveData.address
+            showUserImage.image = UIImage(data: saveData.userImage) // to retrive the image as a data
+            showGenderLable.text = saveData.gender.rawValue
         }
+        
+        
+        
+//        if let saveData = UserDefaults.standard.data(forKey: "userData") {
+//            do {
+//                let decoder = JSONDecoder()
+//                let decodedUserData = try decoder.decode(User.self,from: saveData)
+//                let name = decodedUserData.name
+//                let email = decodedUserData.email
+//                let phone = decodedUserData.phone
+//                let address = decodedUserData.address
+//                let saveSelectedImage = decodedUserData.userImage
+//                let gender = decodedUserData.gender
+//                showNameLabel.text = name
+//                showEmailLabel.text = email
+//                showPhoneLabel.text = phone
+//                showAddressLabel.text = address
+//                showUserImage.image = UIImage(data: saveSelectedImage) // to retrive the image as a data
+//                showGenderLable.text = gender.rawValue
+//            } catch {
+//                print("Error decoding user data: /(error.localizedDescription)")
+//            }
+//        }
     }
     private func logOutBtn() { // func to create logOutBtn
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "logout", style: .plain, target: self, action: #selector(logoutTapped)) // Create Logout Button In Navigation Bar

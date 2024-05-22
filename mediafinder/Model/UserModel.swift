@@ -6,6 +6,12 @@
 //
 
 import Foundation
+import UIKit
+
+enum Gender: String, Codable {
+    case male = "Male"
+    case femail = "Female"
+}
 
 struct User: Codable {
     
@@ -14,4 +20,6 @@ struct User: Codable {
     var password: String
     var phone: String
     var address: String
+    var userImage: Data
+    var gender : Gender
 }
