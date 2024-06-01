@@ -15,7 +15,7 @@ class SignupVC: UIViewController {
     @IBOutlet weak var userGender: UISwitch!
     
     //MARK: - Propreties
-    private var SelectedGender: Gender = .male // var type of Genger enum  ( default value is mail )
+    private var SelectedGender: Gender = .male // var type of Gender enum  ( default value is mail )
     private let imagePiker = UIImagePickerController() // UIImagePickerController() is responsible for images
     
     //MARK: - Lifecycle Methods.
@@ -32,7 +32,7 @@ class SignupVC: UIViewController {
     
     //MARK: - Actions
     @IBAction func goToSecondScreenBtnTapped(_ sender: UIButton) {
-        if isUserDataValid() { // called here to check if the user data is valed make that saveData() then goToSigninVc()
+        if isUserDataValid() { // called here to check if the user data is valid make that saveData() then goToSigninVc()
             saveData() // Called here to save user data after that go to second screen
             goToSigninVc() // Called here to go to signInVC
         }
@@ -41,7 +41,7 @@ class SignupVC: UIViewController {
         goToMapVC()
     }
     @IBAction func imageBtnTapped(_ sender: UIButton) {
-        imagePiker.delegate = self // imagePiker confrim deledate to send the image to signup screen
+        imagePiker.delegate = self // imagePiker confrim delegate to send the image to signup screen
         imagePiker.allowsEditing = true // for make editing
         imagePiker.sourceType = .photoLibrary // for chose the photo from library
         present(imagePiker, animated: true, completion: nil)
@@ -75,7 +75,7 @@ extension SignupVC {
             self.showaAlert(title: "Error", massage: "Pleae select your image")
             return false
         }
-        guard let name = nameTextFiled.text, !name.isEmpty else {
+        guard let name = nameTextFiled.text, !name.isEmpty, name.count >= 3 else {
             self.showaAlert(title: "Error", massage: "Pleae enter your name")
             return false
         }
@@ -123,7 +123,7 @@ extension SignupVC {
             
             UserDefaultManager.shared.saveUserData(userData: userData)
             print("user data saved")
-            print(UserDefaultManager.shared.loadUserData()?.name, "ddddddddd")
+//            print(UserDefaultManager.shared.loadUserData()?.name, "ddddddddd")
 //            do {
 //                let encoder = JSONEncoder()
 //                let encoderData = try encoder.encode(userData)

@@ -27,12 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //MARK: - Private methods.
 extension AppDelegate {
-    // this func to check if the user make login befor or not if yes go to profil screen or not go to login screen
+    // this func to check if the user make login befor or not if yes go to MediaVC screen if not go to login screen
     private func handleRoot() {
         if let saveData = UserDefaults.standard.data(forKey: "userData") {
             let isLogedin = UserDefaults.standard.bool(forKey: "UDKIslogedIn")
             if isLogedin {
-                swichToProfileVc()
+                swichToMediaVC()
             } else {
                 swichToSignInVc()
             }
@@ -40,6 +40,11 @@ extension AppDelegate {
     }
     private func swichToProfileVc() { // This func to make swich to ProfileVC when the user make login 
         let viewController: ProfileVC = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
+        let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
+        window?.rootViewController = navigationController
+    }
+    private func swichToMediaVC() { // This func to make swich to MediaVC when the user make login
+        let viewController: MediaVC = storyboard.instantiateViewController(withIdentifier: "MediaVC") as! MediaVC
         let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
         window?.rootViewController = navigationController
     }

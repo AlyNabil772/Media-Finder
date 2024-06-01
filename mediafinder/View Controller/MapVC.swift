@@ -32,7 +32,7 @@ class MapVC: UIViewController {
     //MARK: - Actions.
     @IBAction func submitBtnTapped(_ sender: UIButton) {
         let selectedLocation = addressLabel?.text ?? ""
-        delegat?.didSelectedLocation(selectedLocation) 
+        delegat?.didSelectedLocation(selectedLocation)
     }
 }
 

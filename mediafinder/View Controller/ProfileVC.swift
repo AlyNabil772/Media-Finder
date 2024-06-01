@@ -17,7 +17,7 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         logOutBtn()
         getDataFromUserdefaults() // calling this func to in viewDidload load to shows user data
-        UserDefaults.standard.setValue(true, forKey: "UDKIslogedIn") // set bool value and  string key to check the user make login befor or not then calling this code in didFinishLaunchingWithOptions func in AppDelegate
+//        UserDefaults.standard.setValue(true, forKey: "UDKIslogedIn") // set bool value and  string key to check the user make login befor or not then calling this code in didFinishLaunchingWithOptions func in AppDelegate
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -54,39 +54,12 @@ extension ProfileVC {
             showUserImage.image = UIImage(data: saveData.userImage) // to retrive the image as a data
             showGenderLable.text = saveData.gender.rawValue
         }
-        
-        
-        
-//        if let saveData = UserDefaults.standard.data(forKey: "userData") {
-//            do {
-//                let decoder = JSONDecoder()
-//                let decodedUserData = try decoder.decode(User.self,from: saveData)
-//                let name = decodedUserData.name
-//                let email = decodedUserData.email
-//                let phone = decodedUserData.phone
-//                let address = decodedUserData.address
-//                let saveSelectedImage = decodedUserData.userImage
-//                let gender = decodedUserData.gender
-//                showNameLabel.text = name
-//                showEmailLabel.text = email
-//                showPhoneLabel.text = phone
-//                showAddressLabel.text = address
-//                showUserImage.image = UIImage(data: saveSelectedImage) // to retrive the image as a data
-//                showGenderLable.text = gender.rawValue
-//            } catch {
-//                print("Error decoding user data: /(error.localizedDescription)")
-//            }
-//        }
     }
     private func logOutBtn() { // func to create logOutBtn
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "logout", style: .plain, target: self, action: #selector(logoutTapped)) // Create Logout Button In Navigation Bar
-        navigationItem.setHidesBackButton(true, animated: true) // Hide Back button in Navigation Bar
     }
 }
 
 
 
-//private func sendNotification() { // craete notification to sent data to SignUpVc
-//    let notification = Notification.Name("color")
-//    NotificationCenter.default.post(name: notification, object: nil)
-//}
+

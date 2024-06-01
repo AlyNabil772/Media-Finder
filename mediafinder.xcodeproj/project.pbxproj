@@ -20,6 +20,10 @@
 		5278F9F32AD496DE00FCEDA2 /* SigninVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5278F9F22AD496DE00FCEDA2 /* SigninVC.swift */; };
 		5278F9F52AD4971A00FCEDA2 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5278F9F42AD4971A00FCEDA2 /* ProfileVC.swift */; };
 		52A31EF42BFD1BE80056CCB8 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A31EF32BFD1BE80056CCB8 /* UserDefaultManager.swift */; };
+		52AEAFAA2C0A332300DA9BCE /* MediaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEAFA92C0A332300DA9BCE /* MediaVC.swift */; };
+		52AEAFAD2C0A37AB00DA9BCE /* MediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEAFAB2C0A37AB00DA9BCE /* MediaTableViewCell.swift */; };
+		52AEAFAE2C0A37AB00DA9BCE /* MediaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52AEAFAC2C0A37AB00DA9BCE /* MediaTableViewCell.xib */; };
+		52AEAFB02C0A44B800DA9BCE /* Media Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEAFAF2C0A44B800DA9BCE /* Media Model.swift */; };
 		52E5FB942BEE924C003A40D8 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E5FB932BEE924C003A40D8 /* UserModel.swift */; };
 		52E5FB962BEF8DFE003A40D8 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E5FB952BEF8DFE003A40D8 /* MapVC.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +63,10 @@
 		5278F9F22AD496DE00FCEDA2 /* SigninVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninVC.swift; sourceTree = "<group>"; };
 		5278F9F42AD4971A00FCEDA2 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		52A31EF32BFD1BE80056CCB8 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		52AEAFA92C0A332300DA9BCE /* MediaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaVC.swift; sourceTree = "<group>"; };
+		52AEAFAB2C0A37AB00DA9BCE /* MediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewCell.swift; sourceTree = "<group>"; };
+		52AEAFAC2C0A37AB00DA9BCE /* MediaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaTableViewCell.xib; sourceTree = "<group>"; };
+		52AEAFAF2C0A44B800DA9BCE /* Media Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Media Model.swift"; sourceTree = "<group>"; };
 		52E5FB932BEE924C003A40D8 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		52E5FB952BEF8DFE003A40D8 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				52E5FB932BEE924C003A40D8 /* UserModel.swift */,
+				52AEAFAF2C0A44B800DA9BCE /* Media Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -99,6 +108,7 @@
 		5260008B2BFCF81F00AD7BDD /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				52AEAFA42C0A307F00DA9BCE /* Media View  */,
 				5278F9F02AD496AB00FCEDA2 /* SignupVC.swift */,
 				5278F9F22AD496DE00FCEDA2 /* SigninVC.swift */,
 				5278F9F42AD4971A00FCEDA2 /* ProfileVC.swift */,
@@ -209,6 +219,32 @@
 			path = mediafinderUITests;
 			sourceTree = "<group>";
 		};
+		52AEAFA42C0A307F00DA9BCE /* Media View  */ = {
+			isa = PBXGroup;
+			children = (
+				52AEAFA62C0A309C00DA9BCE /* Cell */,
+				52AEAFA52C0A308D00DA9BCE /* View Controller */,
+			);
+			path = "Media View ";
+			sourceTree = "<group>";
+		};
+		52AEAFA52C0A308D00DA9BCE /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				52AEAFA92C0A332300DA9BCE /* MediaVC.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		52AEAFA62C0A309C00DA9BCE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				52AEAFAB2C0A37AB00DA9BCE /* MediaTableViewCell.swift */,
+				52AEAFAC2C0A37AB00DA9BCE /* MediaTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -314,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				526E0C542AC3636B00A5DEA0 /* LaunchScreen.storyboard in Resources */,
+				52AEAFAE2C0A37AB00DA9BCE /* MediaTableViewCell.xib in Resources */,
 				526E0C512AC3636B00A5DEA0 /* Assets.xcassets in Resources */,
 				526E0C4F2AC3636900A5DEA0 /* Main.storyboard in Resources */,
 			);
@@ -344,9 +381,12 @@
 				5278F9F52AD4971A00FCEDA2 /* ProfileVC.swift in Sources */,
 				5278F9F12AD496AB00FCEDA2 /* SignupVC.swift in Sources */,
 				526E0C482AC3636900A5DEA0 /* AppDelegate.swift in Sources */,
+				52AEAFAD2C0A37AB00DA9BCE /* MediaTableViewCell.swift in Sources */,
 				5278F9F32AD496DE00FCEDA2 /* SigninVC.swift in Sources */,
+				52AEAFAA2C0A332300DA9BCE /* MediaVC.swift in Sources */,
 				526000922BFCF9E000AD7BDD /* UIViewController+ShowAlert.swift in Sources */,
 				52A31EF42BFD1BE80056CCB8 /* UserDefaultManager.swift in Sources */,
+				52AEAFB02C0A44B800DA9BCE /* Media Model.swift in Sources */,
 				52E5FB962BEF8DFE003A40D8 /* MapVC.swift in Sources */,
 				52E5FB942BEE924C003A40D8 /* UserModel.swift in Sources */,
 			);
