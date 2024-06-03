@@ -25,16 +25,8 @@ class SigninVC: UIViewController {
 //MARK: - Private Methods 
 extension SigninVC {
     private func getData() { // this func to get and decode data in one object
-        if let saveData = UserDefaults.standard.data(forKey: "userData") {
-            do {
-                let decoder = JSONDecoder()
-                let decodedUserData = try decoder.decode(User.self,from: saveData)
-                let email = decodedUserData.email
-                let password = decodedUserData.password
-                checkIfUserIsValid(email: email, password: password) // it's related to below func 
-            } catch {
-                print("Error decoding user data: \(error.localizedDescription)")
-            }
+        if let saveData = UserDefaultManager.shared.loadUserData() {
+            checkIfUserIsValid(email: saveData.email, password: saveData.password)
         }
     }
     private func checkIfUserIsValid(email: String, password: String) { // this func to check if email and passowrd are invalid or not
