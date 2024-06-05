@@ -33,6 +33,8 @@ class MapVC: UIViewController {
     @IBAction func submitBtnTapped(_ sender: UIButton) {
         let selectedLocation = addressLabel?.text ?? ""
         delegat?.didSelectedLocation(selectedLocation)
+        navigationController?.popViewController(animated: true)
+        
     }
 }
 
