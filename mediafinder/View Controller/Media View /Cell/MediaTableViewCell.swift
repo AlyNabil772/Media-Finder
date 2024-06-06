@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MediaTableViewCell: UITableViewCell {
     
@@ -24,8 +25,9 @@ class MediaTableViewCell: UITableViewCell {
     
     //MARK: - Public Methods
     func configurCell(_ data: MediaModel) { 
-        movieImage.image = UIImage(named: data.image)
         movieName.text = data.name
         movieYear.text = data.year
+        //        movieImage.image = UIImage(named: data.image)
+        movieImage.sd_setImage(with: URL(string: data.image), placeholderImage: UIImage(named: "placeholder.png"))
     }
 }
