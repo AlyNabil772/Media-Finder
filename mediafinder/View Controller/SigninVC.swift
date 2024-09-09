@@ -8,12 +8,13 @@ class SigninVC: UIViewController {
     @IBOutlet weak var enterEmailTextField: UITextField!
     @IBOutlet weak var enterPasswordTextField: UITextField!
     
+//    private var user:User?
+    
     //MARK: - Lifecycle Methods.
     override func viewDidLoad() {
         super.viewDidLoad()
         UserDefaults.standard.setValue(false, forKey: "UDKIslogedIn") // This code means the user make Logout (UDKIsLognin ) = false
-        navigationItem.setHidesBackButton(true, animated: true) // to Hide Back button in Navigation Bar
-
+//        navigationItem.setHidesBackButton(true, animated: true) // to Hide Back button in Navigation Bar
     }
     
     //MARK: - Actions.
@@ -25,17 +26,18 @@ class SigninVC: UIViewController {
 //MARK: - Private Methods 
 extension SigninVC {
     private func getData() { // this func to get and decode data in one object
-        if let saveData = UserDefaultManager.shared.loadUserData() {
+        let email = enterEmailTextField.text ?? ""
+        if let saveData = SqlManager.shared.fetchData(email: email) {
             checkIfUserIsValid(email: saveData.email, password: saveData.password)
         }
     }
     private func checkIfUserIsValid(email: String, password: String) { // this func to check if email and passowrd are invalid or not
-        if email == enterEmailTextField.text && password == enterPasswordTextField.text {
+        if enterPasswordTextField.text == password  &&  enterEmailTextField.text == email  {
+            let userDefaults = UserDefaults.standard
+            userDefaults.setValue(email, forKey: "UDKEmail")
             goToMediaVC()
         } else {
-//            print("invalid email or password")
-            self.showaAlert(title: "Error", massage: "Invalid Email or Password")
-
+            showaAlert(title: "Error", massage: "Invalid Email or Password")
         }
     }
     private func goToMediaVC() { // This func to go to prifileVc

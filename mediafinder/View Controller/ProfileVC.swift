@@ -22,6 +22,7 @@ class ProfileVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         showUserImage.layer.cornerRadius = showUserImage.frame.height / 2 // this code to change the image shape to be circylar insted of square
+        getDataFromUserdefaults()
     }
     
     //MARK: - Actions
@@ -35,24 +36,22 @@ class ProfileVC: UIViewController {
 //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
 //        appDelegate.swichToSignInVc()
     }
-    
-    
-    @IBAction func testNotificationBtnTapped(_ sender: UIButton) {
-//        sendNotification()
-    }
 }
 
 //MARK: - Private Methods 
 extension ProfileVC {
     // This func to get and showing the data in profile
-    private func getDataFromUserdefaults() { // this func to get and showing the data in profile
-        if let saveData = UserDefaultManager.shared.loadUserData() {
+    private func getDataFromUserdefaults() { 
+        let userDefaults = UserDefaults.standard
+        guard let email = userDefaults.string(forKey: "UDKEmail") else {return}
+        if let saveData = SqlManager.shared.fetchData(email: email) {
             showNameLabel.text = saveData.name
             showEmailLabel.text = saveData.email
             showPhoneLabel.text = saveData.phone
             showAddressLabel.text = saveData.address
             showUserImage.image = UIImage(data: saveData.userImage) // to retrive the image as a data
             showGenderLable.text = saveData.gender.rawValue
+            
         }
     }
     private func logOutBtn() { // func to create logOutBtn

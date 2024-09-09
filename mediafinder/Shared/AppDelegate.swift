@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         IQKeyboardManager.shared.enable = true
+        SqlManager.shared.setupDatabase()
         handleRoot()
         return true
     }
@@ -31,9 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     // this func to check if the user make login befor or not if yes go to MediaVC screen if not go to login screen
     private func handleRoot() {
-        if let saveData = UserDefaults.standard.data(forKey: "userData") {
-            let isLogedin = UserDefaults.standard.bool(forKey: "UDKIslogedIn")
-            if isLogedin {
+        if UserDefaultManager.shared.isOpenedBefore { // check is isOpenedBefore if yes check below condetion
+            if UserDefaultManager.shared.isLogedIn { // check if isLogedIn swichToMediaVC() if not swichToSignInVc()
                 swichToMediaVC()
             } else {
                 swichToSignInVc()

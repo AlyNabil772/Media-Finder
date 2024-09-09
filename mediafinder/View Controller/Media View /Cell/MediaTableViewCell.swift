@@ -23,11 +23,37 @@ class MediaTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    
+    
     //MARK: - Public Methods
-    func configurCell(_ data: MediaModel) { 
-        movieName.text = data.name
-        movieYear.text = data.year
-        //        movieImage.image = UIImage(named: data.image)
-        movieImage.sd_setImage(with: URL(string: data.image), placeholderImage: UIImage(named: "placeholder.png"))
+    func configurCell(_ data: Result, type: MediaType) {
+        switch type {
+        case .tvShow:
+            movieName.text = data.artistName
+            movieYear.text = data.longDescription
+        case .music:
+            movieName.text = data.trackName
+            movieYear.text = data.artistName
+        case .movie:
+            movieName.text = data.artistName
+            movieYear.text = data.longDescription
+        case .all:
+            movieName.text = data.artistName
+            movieYear.text = data.trackName
+        }
+        if let url = data.artworkUrl {
+            movieImage.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
+        } else {
+            movieImage.image = UIImage(named: "placeholder.png")
+        }
+    }
+    
+    @IBAction func imageAnimateBtnTapped(_ sender: UIButton) {
+        let imqgeFrameX = movieImage.frame.origin.x
+        self.movieImage.frame.origin.x += 4
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, animations: {
+            self.movieImage.frame.origin.x -= 8
+            self.movieImage.frame.origin.x = imqgeFrameX
+        }, completion: nil)
     }
 }

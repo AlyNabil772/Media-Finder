@@ -15,11 +15,12 @@ enum Gender: String, Codable {
 
 struct User: Codable {
     
+    var id: Int
     var name: String
     var email: String
     var password: String
     var phone: String
     var address: String
     var userImage: Data
-    var gender : Gender
+    var gender: Gender
 }
